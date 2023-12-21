@@ -10,7 +10,7 @@ import java.awt.Rectangle;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
-class CefRenderer {
+public class CefRenderer {
     private boolean transparent_;
     private GL2 initialized_context_ = null;
     private int[] texture_id_ = new int[1];
@@ -22,20 +22,20 @@ class CefRenderer {
     private Rectangle original_popup_rect_ = new Rectangle(0, 0, 0, 0);
     private boolean use_draw_pixels_ = false;
 
-    protected CefRenderer(boolean transparent) {
+    public CefRenderer(boolean transparent) {
         transparent_ = transparent;
     }
 
-    protected boolean isTransparent() {
+    public boolean isTransparent() {
         return transparent_;
     }
 
-    protected int getTextureID() {
+    public int getTextureID() {
         return texture_id_[0];
     }
 
     @SuppressWarnings("static-access")
-    protected void initialize(GL2 gl2) {
+    public void initialize(GL2 gl2) {
         if (initialized_context_ == gl2) return;
 
         initialized_context_ = gl2;
@@ -65,13 +65,13 @@ class CefRenderer {
         gl2.glTexEnvf(gl2.GL_TEXTURE_ENV, gl2.GL_TEXTURE_ENV_MODE, gl2.GL_MODULATE);
     }
 
-    protected void cleanup(GL2 gl2) {
+    public void cleanup(GL2 gl2) {
         if (texture_id_[0] != 0) gl2.glDeleteTextures(1, texture_id_, 0);
         view_width_ = view_height_ = 0;
     }
 
     @SuppressWarnings("static-access")
-    protected void render(GL2 gl2) {
+    public void render(GL2 gl2) {
         if (use_draw_pixels_ || view_width_ == 0 || view_height_ == 0) return;
 
         assert (initialized_context_ != null);
@@ -134,17 +134,17 @@ class CefRenderer {
         }
     }
 
-    protected void onPopupSize(Rectangle rect) {
+    public void onPopupSize(Rectangle rect) {
         if (rect.width <= 0 || rect.height <= 0) return;
         original_popup_rect_ = rect;
         popup_rect_ = getPopupRectInWebView(original_popup_rect_);
     }
 
-    protected Rectangle getPopupRect() {
+    public Rectangle getPopupRect() {
         return (Rectangle) popup_rect_.clone();
     }
 
-    protected Rectangle getPopupRectInWebView(Rectangle original_rect) {
+    public Rectangle getPopupRectInWebView(Rectangle original_rect) {
         Rectangle rc = original_rect;
         // if x or y are negative, move them to 0.
         if (rc.x < 0) rc.x = 0;
@@ -158,13 +158,13 @@ class CefRenderer {
         return rc;
     }
 
-    protected void clearPopupRects() {
+    public void clearPopupRects() {
         popup_rect_.setBounds(0, 0, 0, 0);
         original_popup_rect_.setBounds(0, 0, 0, 0);
     }
 
     @SuppressWarnings("static-access")
-    protected void onPaint(GL2 gl2, boolean popup, Rectangle[] dirtyRects, ByteBuffer buffer,
+    public void onPaint(GL2 gl2, boolean popup, Rectangle[] dirtyRects, ByteBuffer buffer,
             int width, int height) {
         initialize(gl2);
 
@@ -246,12 +246,12 @@ class CefRenderer {
         }
     }
 
-    protected void setSpin(float spinX, float spinY) {
+    public void setSpin(float spinX, float spinY) {
         spin_x_ = spinX;
         spin_y_ = spinY;
     }
 
-    protected void incrementSpin(float spinDX, float spinDY) {
+    public void incrementSpin(float spinDX, float spinDY) {
         spin_x_ -= spinDX;
         spin_y_ -= spinDY;
     }
