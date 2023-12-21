@@ -37,7 +37,7 @@ import javax.swing.SwingUtilities;
  * The visibility of this class is "package". To create a new
  * CefBrowser instance, please use CefBrowserFactory.
  */
-abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowser {
+public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowser {
     private volatile boolean isPending_ = false;
     private final CefClient client_;
     private final String url_;
@@ -49,7 +49,7 @@ abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowser {
     private volatile boolean isClosed_ = false;
     private volatile boolean isClosing_ = false;
 
-    protected CefBrowser_N(CefClient client, String url, CefRequestContext context,
+    public CefBrowser_N(CefClient client, String url, CefRequestContext context,
             CefBrowser_N parent, Point inspectAt) {
         client_ = client;
         url_ = url;
@@ -58,23 +58,23 @@ abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowser {
         inspectAt_ = inspectAt;
     }
 
-    protected String getUrl() {
+    public String getUrl() {
         return url_;
     }
 
-    protected CefRequestContext getRequestContext() {
+    public CefRequestContext getRequestContext() {
         return request_context_;
     }
 
-    protected CefBrowser_N getParentBrowser() {
+    public CefBrowser_N getParentBrowser() {
         return parent_;
     }
 
-    protected Point getInspectAt() {
+    public Point getInspectAt() {
         return inspectAt_;
     }
 
-    protected boolean isClosed() {
+    public boolean isClosed() {
         return isClosed_;
     }
 

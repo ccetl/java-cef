@@ -73,22 +73,22 @@ import javax.swing.SwingUtilities;
  * CefBrowser instance, please use CefBrowserFactory.
  */
 public class CefBrowserOsr extends CefBrowser_N implements CefRenderHandler {
-    private CefRenderer renderer_;
-    private GLCanvas canvas_;
-    private long window_handle_ = 0;
-    private boolean justCreated_ = false;
-    private Rectangle browser_rect_ = new Rectangle(0, 0, 1, 1); // Work around CEF issue #1437.
-    private Point screenPoint_ = new Point(0, 0);
-    private double scaleFactor_ = 1.0;
-    private int depth = 32;
-    private int depth_per_component = 8;
-    private boolean isTransparent_;
+    public CefRenderer renderer_;
+    public GLCanvas canvas_;
+    public long window_handle_ = 0;
+    public boolean justCreated_ = false;
+    public Rectangle browser_rect_ = new Rectangle(0, 0, 1, 1); // Work around CEF issue #1437.
+    public Point screenPoint_ = new Point(0, 0);
+    public double scaleFactor_ = 1.0;
+    public int depth = 32;
+    public int depth_per_component = 8;
+    public boolean isTransparent_;
 
-    CefBrowserOsr(CefClient client, String url, boolean transparent, CefRequestContext context) {
+    public CefBrowserOsr(CefClient client, String url, boolean transparent, CefRequestContext context) {
         this(client, url, transparent, context, null, null);
     }
 
-    private CefBrowserOsr(CefClient client, String url, boolean transparent,
+    public CefBrowserOsr(CefClient client, String url, boolean transparent,
             CefRequestContext context, CefBrowserOsr parent, Point inspectAt) {
         super(client, url, context, parent, inspectAt);
         isTransparent_ = transparent;
@@ -114,13 +114,13 @@ public class CefBrowserOsr extends CefBrowser_N implements CefRenderHandler {
     }
 
     @Override
-    protected CefBrowser_N createDevToolsBrowser(CefClient client, String url,
+    public CefBrowser_N createDevToolsBrowser(CefClient client, String url,
             CefRequestContext context, CefBrowser_N parent, Point inspectAt) {
         return new CefBrowserOsr(
                 client, url, isTransparent_, context, (CefBrowserOsr) this, inspectAt);
     }
 
-    private synchronized long getWindowHandle() {
+    public synchronized long getWindowHandle() {
         if (window_handle_ == 0) {
             NativeSurface surface = canvas_.getNativeSurface();
             if (surface != null) {
@@ -134,7 +134,7 @@ public class CefBrowserOsr extends CefBrowser_N implements CefRenderHandler {
     }
 
     @SuppressWarnings("serial")
-    private void createGLCanvas() {
+    public void createGLCanvas() {
         GLProfile glprofile = GLProfile.getMaxFixedFunc(true);
         GLCapabilities glcapabilities = new GLCapabilities(glprofile);
         canvas_ = new GLCanvas(glcapabilities) {
@@ -390,7 +390,7 @@ public class CefBrowserOsr extends CefBrowser_N implements CefRenderHandler {
         return true;
     }
 
-    private static final class SyntheticDragGestureRecognizer extends DragGestureRecognizer {
+    public static final class SyntheticDragGestureRecognizer extends DragGestureRecognizer {
         public SyntheticDragGestureRecognizer(Component c, int action, MouseEvent triggerEvent) {
             super(new DragSource(), c, action);
             appendEvent(triggerEvent);
@@ -401,7 +401,7 @@ public class CefBrowserOsr extends CefBrowser_N implements CefRenderHandler {
         protected void unregisterListeners() {}
     };
 
-    private static int getDndAction(int mask) {
+    public static int getDndAction(int mask) {
         // Default to copy if multiple operations are specified.
         int action = DnDConstants.ACTION_NONE;
         if ((mask & CefDragData.DragOperations.DRAG_OPERATION_COPY)
@@ -443,7 +443,7 @@ public class CefBrowserOsr extends CefBrowser_N implements CefRenderHandler {
         // |operation|.
     }
 
-    private void createBrowserIfRequired(boolean hasParent) {
+    public void createBrowserIfRequired(boolean hasParent) {
         long windowHandle = 0;
         if (hasParent) {
             windowHandle = getWindowHandle();
@@ -464,7 +464,7 @@ public class CefBrowserOsr extends CefBrowser_N implements CefRenderHandler {
         }
     }
 
-    private void notifyAfterParentChanged() {
+    public void notifyAfterParentChanged() {
         // With OSR there is no native window to reparent but we still need to send the
         // notification.
         getClient().onAfterParentChanged(this);
