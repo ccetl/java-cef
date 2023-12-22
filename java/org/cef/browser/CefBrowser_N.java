@@ -550,7 +550,7 @@ public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowse
         }
     }
 
-    protected final void closeDevTools() {
+    public final void closeDevTools() {
         try {
             N_CloseDevTools();
         } catch (UnsatisfiedLinkError ule) {
@@ -572,7 +572,7 @@ public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowse
      * @param width The new width of the browser
      * @param height The new height of the browser
      */
-    protected final void wasResized(int width, int height) {
+    public final void wasResized(int width, int height) {
         try {
             N_WasResized(width, height);
         } catch (UnsatisfiedLinkError ule) {
@@ -583,7 +583,7 @@ public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowse
     /**
      * Invalidate the UI.
      */
-    protected final void invalidate() {
+    public final void invalidate() {
         try {
             N_Invalidate();
         } catch (UnsatisfiedLinkError ule) {
@@ -595,7 +595,7 @@ public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowse
      * Send a key event.
      * @param e The event to send.
      */
-    protected final void sendKeyEvent(KeyEvent e) {
+    public final void sendKeyEvent(KeyEvent e) {
         try {
             N_SendKeyEvent(e);
         } catch (UnsatisfiedLinkError ule) {
@@ -607,7 +607,7 @@ public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowse
      * Send a mouse event.
      * @param e The event to send.
      */
-    protected final void sendMouseEvent(MouseEvent e) {
+    public final void sendMouseEvent(MouseEvent e) {
         try {
             N_SendMouseEvent(e);
         } catch (UnsatisfiedLinkError ule) {
@@ -619,7 +619,7 @@ public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowse
      * Send a mouse wheel event.
      * @param e The event to send.
      */
-    protected final void sendMouseWheelEvent(MouseWheelEvent e) {
+    public final void sendMouseWheelEvent(MouseWheelEvent e) {
         try {
             N_SendMouseWheelEvent(e);
         } catch (UnsatisfiedLinkError ule) {
@@ -636,7 +636,7 @@ public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowse
      * CefRenderHandler::StartDragging).
      * This method is only used when window rendering is disabled.
      */
-    protected final void dragTargetDragEnter(
+    public final void dragTargetDragEnter(
             CefDragData dragData, Point pos, int modifiers, int allowedOps) {
         try {
             N_DragTargetDragEnter(dragData, pos, modifiers, allowedOps);
@@ -651,7 +651,7 @@ public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowse
      * DragTargetDragLeave/DragTargetDrop).
      * This method is only used when window rendering is disabled.
      */
-    protected final void dragTargetDragOver(Point pos, int modifiers, int allowedOps) {
+    public final void dragTargetDragOver(Point pos, int modifiers, int allowedOps) {
         try {
             N_DragTargetDragOver(pos, modifiers, allowedOps);
         } catch (UnsatisfiedLinkError ule) {
@@ -664,7 +664,7 @@ public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowse
      * calling DragTargetDragEnter).
      * This method is only used when window rendering is disabled.
      */
-    protected final void dragTargetDragLeave() {
+    public final void dragTargetDragLeave() {
         try {
             N_DragTargetDragLeave();
         } catch (UnsatisfiedLinkError ule) {
@@ -679,7 +679,7 @@ public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowse
      * the previous DragTargetDragEnter call.
      * This method is only used when window rendering is disabled.
      */
-    protected final void dragTargetDrop(Point pos, int modifiers) {
+    public final void dragTargetDrop(Point pos, int modifiers) {
         try {
             N_DragTargetDrop(pos, modifiers);
         } catch (UnsatisfiedLinkError ule) {
@@ -696,7 +696,7 @@ public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowse
      * DragSource* methods.
      * This method is only used when window rendering is disabled.
      */
-    protected final void dragSourceEndedAt(Point pos, int operation) {
+    public final void dragSourceEndedAt(Point pos, int operation) {
         try {
             N_DragSourceEndedAt(pos, operation);
         } catch (UnsatisfiedLinkError ule) {
@@ -713,7 +713,7 @@ public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowse
      * methods.
      * This method is only used when window rendering is disabled.
      */
-    protected final void dragSourceSystemDragEnded() {
+    public final void dragSourceSystemDragEnded() {
         try {
             N_DragSourceSystemDragEnded();
         } catch (UnsatisfiedLinkError ule) {
@@ -721,7 +721,7 @@ public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowse
         }
     }
 
-    protected final void updateUI(Rectangle contentRect, Rectangle browserRect) {
+    public final void updateUI(Rectangle contentRect, Rectangle browserRect) {
         try {
             N_UpdateUI(contentRect, browserRect);
         } catch (UnsatisfiedLinkError ule) {
@@ -729,7 +729,7 @@ public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowse
         }
     }
 
-    protected final void setParent(long windowHandle, Component canvas) {
+    public final void setParent(long windowHandle, Component canvas) {
         if (isClosing_ || isClosed_) return;
 
         try {
@@ -743,7 +743,7 @@ public abstract class CefBrowser_N extends CefNativeAdapter implements CefBrowse
      * Call this method if the browser frame was moved.
      * This fixes positioning of select popups and dismissal on window move/resize.
      */
-    protected final void notifyMoveOrResizeStarted() {
+    public final void notifyMoveOrResizeStarted() {
         try {
             N_NotifyMoveOrResizeStarted();
         } catch (UnsatisfiedLinkError ule) {
